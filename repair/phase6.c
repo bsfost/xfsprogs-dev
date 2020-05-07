@@ -1104,7 +1104,7 @@ mv_orphanage(
 					(unsigned long long)ino, ++incr);
 
 	/* Orphans may not have a proper parent, so use custom ops here */
-	err = -libxfs_iget(mp, NULL, ino, 0, &ino_p, &phase6_ifork_ops);
+	err = -libxfs_iget(mp, NULL, ino, 0, &ino_p, &xfs_default_ifork_ops);
 	if (err)
 		do_error(_("%d - couldn't iget disconnected inode\n"), err);
 
@@ -2875,7 +2875,7 @@ process_dir_inode(
 
 	ASSERT(!is_inode_refchecked(irec, ino_offset) || dotdot_update);
 
-	error = -libxfs_iget(mp, NULL, ino, 0, &ip, &phase6_ifork_ops);
+	error = -libxfs_iget(mp, NULL, ino, 0, &ip, &xfs_default_ifork_ops);
 	if (error) {
 		if (!no_modify)
 			do_error(
