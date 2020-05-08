@@ -480,6 +480,9 @@ _("corrected entry offsets in directory %" PRIu64 "\n"),
 	 * check parent (..) entry
 	 */
 	*parent = libxfs_dir2_sf_get_parent_ino(sfp);
+	if (!ino_discovery)
+		return 0;
+
 
 	/*
 	 * if parent entry is bogus, null it out.  we'll fix it later .
